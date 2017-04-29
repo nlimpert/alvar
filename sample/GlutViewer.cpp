@@ -2,6 +2,7 @@
 
 #include "Rotation.h"
 #include "Platform.h"
+#include <opencv2/calib3d/calib3d_c.h>
 
 using namespace std;
 using namespace alvar;
