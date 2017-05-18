@@ -158,6 +158,7 @@ if(ALVAR_PACKAGE)
       set(DSCAPTURE_LIBRARIES "${DSCAPTURE_ROOT_PATH}/lib/DSCapture.lib")
       set(DSCAPTURE_LIBRARIES_DEBUG "${DSCAPTURE_ROOT_PATH}/lib/DSCaptured.lib")
     endif(ALVAR_USE_DSCAPTURE)
+    set(ALVAR_PLUGIN_PATH "bin/alvarplugins" CACHE PATH "Install path for plugins")
 endif(ALVAR_PACKAGE)
 
 if(NOT ALVAR_PACKAGE)

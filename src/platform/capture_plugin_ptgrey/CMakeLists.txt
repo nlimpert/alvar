@@ -41,7 +41,7 @@ if(ALVAR_PACKAGE MATCHES sdk)
 endif(ALVAR_PACKAGE MATCHES sdk)
 
 # install target
-install(TARGETS ALVARCapturePluginPtgrey DESTINATION bin/alvarplugins)
+install(TARGETS ALVARCapturePluginPtgrey DESTINATION ${ALVAR_PLUGIN_PATH})
 
 # hack to setup environment runtime path
 if(NOT ${MSVC_IDE})

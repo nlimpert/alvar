@@ -36,7 +36,7 @@ if(ALVAR_PACKAGE MATCHES sdk)
 endif(ALVAR_PACKAGE MATCHES sdk)
 
 # install target
-install(TARGETS ALVARCapturePluginHighgui DESTINATION bin/alvarplugins)
+install(TARGETS ALVARCapturePluginHighgui DESTINATION ${ALVAR_PLUGIN_PATH})
 
 # hack to setup environment runtime path
 if(NOT ${MSVC_IDE})
