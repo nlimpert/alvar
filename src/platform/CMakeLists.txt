@@ -4,6 +4,10 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # include alvar library
 include_directories(${ALVAR_INCLUDE_DIRS})
 
+file(TO_NATIVE_PATH "${CMAKE_INSTALL_PREFIX}/${ALVAR_PLUGIN_PATH}" NATIVE_ALVAR_PLUGIN_PATH)
+message(STATUS "Plugin Path: ${NATIVE_ALVAR_PLUGIN_PATH}")
+add_definitions(-DALVAR_PLUGIN_PATH="${NATIVE_ALVAR_PLUGIN_PATH}")
+
 # define alvarplatform library source files to compile
 set(ALVARPlatform_HEADERS
     Capture.h
