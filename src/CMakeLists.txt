@@ -106,8 +106,12 @@ add_library(ALVAR
     ${ALVAR_HEADERS}
     ${ALVAR_SOURCES}
 )
-set_target_properties(ALVAR PROPERTIES OUTPUT_NAME alvar${ALVAR_VERSION_NODOTS})
-set_target_properties(ALVAR PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(ALVAR PROPERTIES
+  OUTPUT_NAME alvar
+  VERSION ${ALVAR_VERSION}
+  SOVERSION ${ALVAR_VERSION_MAJOR}
+  DEBUG_POSTFIX d
+)
 
 # link alvar library target to required libraries
 target_link_libraries(ALVAR
