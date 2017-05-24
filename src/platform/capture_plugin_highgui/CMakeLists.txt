@@ -20,8 +20,12 @@ add_library(ALVARCapturePluginHighgui MODULE
     ${ALVARCapturePluginHighgui_HEADERS}
     ${ALVARCapturePluginHighgui_SOURCES}
 )
-set_target_properties(ALVARCapturePluginHighgui PROPERTIES OUTPUT_NAME alvarcapturepluginhighgui${ALVAR_VERSION_NODOTS})
-set_target_properties(ALVARCapturePluginHighgui PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(ALVARCapturePluginHighgui PROPERTIES
+  OUTPUT_NAME alvarcapturepluginhighgui
+  VERSION ${ALVAR_VERSION}
+  SOVERSION ${ALVAR_VERSION_MAJOR}
+  DEBUG_POSTFIX d
+)
 
 # link plugin library target to required libraries
 target_link_libraries(ALVARCapturePluginHighgui

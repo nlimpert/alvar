@@ -20,8 +20,12 @@ add_library(ALVARCapturePluginFile MODULE
     ${ALVARCapturePluginFile_HEADERS}
     ${ALVARCapturePluginFile_SOURCES}
 )
-set_target_properties(ALVARCapturePluginFile PROPERTIES OUTPUT_NAME alvarcapturepluginfile${ALVAR_VERSION_NODOTS})
-set_target_properties(ALVARCapturePluginFile PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(ALVARCapturePluginFile PROPERTIES
+  OUTPUT_NAME alvarcapturepluginfile
+  VERSION ${ALVAR_VERSION}
+  SOVERSION ${ALVAR_VERSION_MAJOR}
+  DEBUG_POSTFIX d
+)
 
 # link plugin library target to required libraries
 target_link_libraries(ALVARCapturePluginFile

@@ -71,8 +71,12 @@ add_library(ALVARPlatform
     ${ALVARPlatform_HEADERS_PRIVATE}
     ${ALVARPlatform_SOURCES}
 )
-set_target_properties(ALVARPlatform PROPERTIES OUTPUT_NAME alvarplatform${ALVAR_VERSION_NODOTS})
-set_target_properties(ALVARPlatform PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(ALVARPlatform PROPERTIES
+  OUTPUT_NAME alvarplatform
+  VERSION ${ALVAR_VERSION}
+  SOVERSION ${ALVAR_VERSION_MAJOR}
+  DEBUG_POSTFIX d
+)
 
 # link alvarplatform library target to required libraries
 target_link_libraries(ALVARPlatform

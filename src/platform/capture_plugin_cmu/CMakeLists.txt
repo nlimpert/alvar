@@ -23,8 +23,12 @@ add_library(ALVARCapturePluginCMU MODULE
     ${ALVARCapturePluginCMU_HEADERS}
     ${ALVARCapturePluginCMU_SOURCES}
 )
-set_target_properties(ALVARCapturePluginCMU PROPERTIES OUTPUT_NAME alvarcaptureplugincmu${ALVAR_VERSION_NODOTS})
-set_target_properties(ALVARCapturePluginCMU PROPERTIES DEBUG_POSTFIX d)
+set_target_properties(ALVARCapturePluginCMU PROPERTIES
+  OUTPUT_NAME alvarcaptureplugincmu
+  VERSION ${ALVAR_VERSION}
+  SOVERSION ${ALVAR_VERSION_MAJOR}
+  DEBUG_POSTFIX d
+)
 
 # link plugin library target to required libraries
 target_link_libraries(ALVARCapturePluginCMU
