@@ -9,7 +9,7 @@ endif(GLUT_FOUND)
 
 # include tinyxml library
 include_directories(${TinyXML_INCLUDE_DIRS})
-add_definitions(-DTIXML_USE_STL)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TinyXML_CFLAGS}")
 
 # include alvar library
 include_directories(${ALVAR_INCLUDE_DIRS})
@@ -21,7 +21,7 @@ add_definitions(-DALVAR_TEST_DIR="${CMAKE_CURRENT_SOURCE_DIR}")
 if(CxxTest_FOUND AND PERL_FOUND)
     # basic tests
     add_cxxtest(TestFileFormats TestFileFormats.cpp)
-    target_link_libraries(TestFileFormats ${ALVAR_LIBRARIES} TinyXML)
+    target_link_libraries(TestFileFormats ${ALVAR_LIBRARIES} ${TinyXML_LIBRARIES)
 
     # TODO: port TestMarkerDetector to linux
     if(WIN32)

@@ -3,7 +3,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 # include tinyxml library
 include_directories(${TinyXML_INCLUDE_DIRS})
-add_definitions(-DTIXML_USE_STL)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TinyXML_CFLAGS}")
 
 # ensure alvar api is exported when building library
 add_definitions(-DALVAR_BUILD)
@@ -116,7 +116,7 @@ set_target_properties(ALVAR PROPERTIES
 # link alvar library target to required libraries
 target_link_libraries(ALVAR
     ${OpenCV_LIBRARIES}
-    TinyXML
+    ${TinyXML_LIBRARIES}
 )
 
 # install headers
