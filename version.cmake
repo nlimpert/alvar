@@ -5,7 +5,7 @@ set(ALVAR_INTERNAL_RELEASE FALSE)
 
 # set project version
 set(ALVAR_VERSION_MAJOR 2)
-set(ALVAR_VERSION_MINOR 0)
+set(ALVAR_VERSION_MINOR 1)
 set(ALVAR_VERSION_PATCH 0)
 
 # denote special version tag
