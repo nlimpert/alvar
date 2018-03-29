@@ -264,7 +264,7 @@ endif(UNIX)
 # process sub directories
 if(ALVAR_PACKAGE)
   if(UNIX AND PKG_CONFIG_FOUND)
-        pkg_check_modules(TinyXML REQUIRED tinyxml)
+        pkg_check_modules(TinyXML tinyxml)
         if(NOT TinyXML_FOUND)
             message(STATUS "Could not find TinyXML, using bundled version")
             add_subdirectory(3rdparty)
