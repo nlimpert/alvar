@@ -20,7 +20,6 @@ set(ALVARCapturePluginDSCapture_SOURCES
 
 # add source files to plugin library and set name and properties
 add_library(ALVARCapturePluginDSCapture MODULE
-    ${ALVARCapturePluginDSCapture_HEADERS}
     ${ALVARCapturePluginDSCapture_SOURCES}
 )
 set_target_properties(ALVARCapturePluginDSCapture PROPERTIES
@@ -40,22 +39,13 @@ target_link_libraries(ALVARCapturePluginDSCapture
 )
 
 # install headers
-if(ALVAR_PACKAGE MATCHES sdk)
-    install(FILES ${ALVARCapturePluginDSCapture_HEADERS} DESTINATION include/platform/capture_plugin_dscapture)
-endif(ALVAR_PACKAGE MATCHES sdk)
+install(FILES ${ALVARCapturePluginDSCapture_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/alvar/platform/capture_plugin_dscapture)
 
 # install target
-install(TARGETS ALVARCapturePluginDSCapture DESTINATION ${ALVAR_PLUGIN_PATH})
+install(TARGETS ALVARCapturePluginDSCapture DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # hack to setup environment runtime path
-if(NOT ${MSVC_IDE})
-    list(APPEND ALVAR_RUNTIME
-        ${CMAKE_CURRENT_BINARY_DIR}\;
-    )
-else(NOT ${MSVC_IDE})
-    list(APPEND ALVAR_RUNTIME
-        ${CMAKE_CURRENT_BINARY_DIR}/Debug\;
-        ${CMAKE_CURRENT_BINARY_DIR}/Release\;
-    )
-endif(NOT ${MSVC_IDE})
+list(APPEND ALVAR_RUNTIME
+    ${CMAKE_CURRENT_BINARY_DIR}\;
+)
 set(ALVAR_RUNTIME ${ALVAR_RUNTIME} PARENT_SCOPE)

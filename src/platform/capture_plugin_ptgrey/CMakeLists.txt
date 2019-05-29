@@ -20,7 +20,6 @@ set(ALVARCapturePluginPtgrey_SOURCES
 
 # add source files to plugin library and set name and properties
 add_library(ALVARCapturePluginPtgrey MODULE
-    ${ALVARCapturePluginPtgrey_HEADERS}
     ${ALVARCapturePluginPtgrey_SOURCES}
 )
 set_target_properties(ALVARCapturePluginPtgrey PROPERTIES
@@ -40,12 +39,10 @@ target_link_libraries(ALVARCapturePluginPtgrey
 )
 
 # install headers
-if(ALVAR_PACKAGE MATCHES sdk)
-    install(FILES ${ALVARCapturePluginPtgrey_HEADERS} DESTINATION include/platform/capture_plugin_ptgrey)
-endif(ALVAR_PACKAGE MATCHES sdk)
+install(FILES ${ALVARCapturePluginPtgrey_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/alvar/platform/capture_plugin_ptgrey)
 
 # install target
-install(TARGETS ALVARCapturePluginPtgrey DESTINATION ${ALVAR_PLUGIN_PATH})
+install(TARGETS ALVARCapturePluginPtgrey DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # hack to setup environment runtime path
 if(NOT ${MSVC_IDE})

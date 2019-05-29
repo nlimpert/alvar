@@ -4,14 +4,6 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 # include alvar library
 include_directories(${ALVAR_INCLUDE_DIRS})
 
-if(IS_ABSOLUTE "${ALVAR_PLUGIN_PATH}")
-  file(TO_NATIVE_PATH "${ALVAR_PLUGIN_PATH}" NATIVE_ALVAR_PLUGIN_PATH)
-else(IS_ABSOLUTE "${ALVAR_PLUGIN_PATH}")
-  file(TO_NATIVE_PATH "${CMAKE_INSTALL_PREFIX}/${ALVAR_PLUGIN_PATH}" NATIVE_ALVAR_PLUGIN_PATH)
-endif(IS_ABSOLUTE "${ALVAR_PLUGIN_PATH}")
-message(STATUS "Plugin Path: ${NATIVE_ALVAR_PLUGIN_PATH}")
-add_definitions(-DALVAR_PLUGIN_PATH="${NATIVE_ALVAR_PLUGIN_PATH}")
-
 # define alvarplatform library source files to compile
 set(ALVARPlatform_HEADERS
     Capture.h
@@ -45,30 +37,19 @@ set(ALVARPlatform_SOURCES
     Threads.cpp
     Timer.cpp
 )
-if(WIN32)
-    list(APPEND ALVARPlatform_SOURCES
-        CaptureFactory_win.cpp
-        DirectoryIterator_win.cpp
-        Mutex_win.cpp
-        Plugin_win.cpp
-        Threads_win.cpp
-        Timer_win.cpp
-    )
-else(WIN32)
-    list(APPEND ALVARPlatform_SOURCES
-        CaptureFactory_unix.cpp
-        DirectoryIterator_unix.cpp
-        Mutex_unix.cpp
-        Plugin_unix.cpp
-        Threads_unix.cpp
-        Timer_unix.cpp
-    )
-endif(WIN32)
+
+list(APPEND ALVARPlatform_SOURCES
+    CaptureFactory_unix.cpp
+    DirectoryIterator_unix.cpp
+    Mutex_unix.cpp
+    Plugin_unix.cpp
+    Threads_unix.cpp
+    Timer_unix.cpp
+)
+
 
 # add source files to alvarplatform library and set name and properties
 add_library(ALVARPlatform
-    ${ALVARPlatform_HEADERS}
-    ${ALVARPlatform_HEADERS_PRIVATE}
     ${ALVARPlatform_SOURCES}
 )
 set_target_properties(ALVARPlatform PROPERTIES
@@ -85,12 +66,10 @@ target_link_libraries(ALVARPlatform
 )
 
 # install headers
-if(ALVAR_PACKAGE MATCHES sdk)
-    install(FILES ${ALVARPlatform_HEADERS} DESTINATION include/platform)
-endif(ALVAR_PACKAGE MATCHES sdk)
+install(FILES ${ALVARPlatform_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/alvar/platform)
 
 # install target
-install(TARGETS ALVARPlatform DESTINATION bin)
+install(TARGETS ALVARPlatform DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # set include directories and libraries variables for alvar
 list(APPEND ALVAR_INCLUDE_DIRS

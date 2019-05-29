@@ -23,14 +23,6 @@ if(CxxTest_FOUND AND PERL_FOUND)
     add_cxxtest(TestFileFormats TestFileFormats.cpp)
     target_link_libraries(TestFileFormats ${ALVAR_LIBRARIES} ${TinyXML_LIBRARIES)
 
-    # TODO: port TestMarkerDetector to linux
-    if(WIN32)
-        if(GLUT_FOUND)
-            add_cxxtest(TestMarkerDetector TestMarkerDetector.cpp)
-            target_link_libraries(TestMarkerDetector ${ALVAR_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_glut_LIBRARY})
-        endif(GLUT_FOUND)
-    endif(WIN32)
-
     # pro tests
     add_cxxtest(TestRansac TestRansac.cpp)
     target_link_libraries(TestRansac ${ALVAR_LIBRARIES})

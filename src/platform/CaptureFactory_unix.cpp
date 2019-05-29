@@ -40,9 +40,6 @@ void CaptureFactoryPrivate::setupPluginPaths()
         mPluginPaths.push_back(applicationPath);
         mPluginPaths.push_back(applicationPath + "/alvarplugins");
     }
-#ifdef ALVAR_PLUGIN_PATH
-    mPluginPaths.push_back(std::string(ALVAR_PLUGIN_PATH));
-#endif
     
     // ALVAR library path
     parseEnvironmentVariable(std::string("ALVAR_LIBRARY_PATH"));
