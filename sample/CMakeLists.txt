@@ -72,17 +72,9 @@ foreach(_sample ${ALVAR_SAMPLES})
         target_link_libraries(${_sample} SharedGlutViewer)
     endif(NOT _glutviewer EQUAL -1)
 
-    # install executable
-    if(NOT ALVAR_PACKAGE OR ALVAR_PACKAGE MATCHES bin)
-        install(TARGETS ${_sample} DESTINATION bin)
-    endif(NOT ALVAR_PACKAGE OR ALVAR_PACKAGE MATCHES bin)
 endforeach(_sample ${ALVAR_SAMPLES})
 
-# install files for exported build environment
-if(ALVAR_PACKAGE MATCHES sdk)
-    install(FILES CMakeLists.txt DESTINATION sample)
-    file(GLOB ALVAR_SAMPLE_HEADERS "*.h")
-    install(FILES ${ALVAR_SAMPLE_HEADERS} DESTINATION sample)
-    file(GLOB ALVAR_SAMPLE_SOURCES "*.cpp")
-    install(FILES ${ALVAR_SAMPLE_SOURCES} DESTINATION sample)
-endif(ALVAR_PACKAGE MATCHES sdk)
+file(GLOB ALVAR_SAMPLE_HEADERS "*.h")
+install(FILES ${ALVAR_SAMPLE_HEADERS} DESTINATION ${CMAKE_INSTALL_DOCDIR}/sample)
+file(GLOB ALVAR_SAMPLE_SOURCES "*.cpp")
+install(FILES ${ALVAR_SAMPLE_SOURCES} DESTINATION ${CMAKE_INSTALL_DOCDIR}/sample)

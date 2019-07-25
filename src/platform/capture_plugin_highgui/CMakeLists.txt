@@ -36,21 +36,14 @@ target_link_libraries(ALVARCapturePluginHighgui
 
 # install headers
 if(ALVAR_PACKAGE MATCHES sdk)
-    install(FILES ${ALVARCapturePluginHighgui_HEADERS} DESTINATION include/platform/capture_plugin_highgui)
+    install(FILES ${ALVARCapturePluginHighgui_HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/alvar/platform/capture_plugin_highgui)
 endif(ALVAR_PACKAGE MATCHES sdk)
 
 # install target
-install(TARGETS ALVARCapturePluginHighgui DESTINATION ${ALVAR_PLUGIN_PATH})
+install(TARGETS ALVARCapturePluginHighgui DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 # hack to setup environment runtime path
-if(NOT ${MSVC_IDE})
-    list(APPEND ALVAR_RUNTIME
-        ${CMAKE_CURRENT_BINARY_DIR}\;
-    )
-else(NOT ${MSVC_IDE})
-    list(APPEND ALVAR_RUNTIME
-        ${CMAKE_CURRENT_BINARY_DIR}/Debug\;
-        ${CMAKE_CURRENT_BINARY_DIR}/Release\;
-    )
-endif(NOT ${MSVC_IDE})
+list(APPEND ALVAR_RUNTIME
+    ${CMAKE_CURRENT_BINARY_DIR}\;
+)
 set(ALVAR_RUNTIME ${ALVAR_RUNTIME} PARENT_SCOPE)
