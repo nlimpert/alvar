@@ -7,6 +7,9 @@
 #include "Kalman.h"
 #include "Platform.h"
 #include "AlvarException.h"
+
+#include <opencv2/opencv.hpp>
+
 using namespace alvar;
 using namespace std;
 

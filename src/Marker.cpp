@@ -25,6 +25,8 @@
 #include "Marker.h"
 #include "highgui.h"
 
+#include <opencv2/opencv.hpp>
+
 template class ALVAR_EXPORT alvar::MarkerIteratorImpl<alvar::Marker>;
 template class ALVAR_EXPORT alvar::MarkerIteratorImpl<alvar::MarkerData>;
 template class ALVAR_EXPORT alvar::MarkerIteratorImpl<alvar::MarkerArtoolkit>;

@@ -36,6 +36,7 @@
 #include "Camera.h"
 #include "Line.h"
 #include <sstream>
+#include <opencv2/opencv.hpp>
 
 namespace alvar {
 

@@ -2,6 +2,9 @@
 #include "Camera.h"
 #include "CvTestbed.h"
 #include "Shared.h"
+
+#include <opencv2/opencv.hpp>
+
 using namespace alvar;
 using namespace std;
 

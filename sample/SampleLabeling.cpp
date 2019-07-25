@@ -1,6 +1,9 @@
 #include "CvTestbed.h"
 #include "ConnectedComponents.h"
 #include "Shared.h"
+
+#include <opencv2/opencv.hpp>
+
 using namespace alvar;
 using namespace std;
 
