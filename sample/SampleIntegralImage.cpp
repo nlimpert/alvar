@@ -49,13 +49,13 @@ void videocallback(IplImage *image)
         cvLine(image, 
                cvPoint(int(cvGet2D(img_ver, y-1, 0).val[0]), y-1), 
                cvPoint(int(cvGet2D(img_ver, y, 0).val[0]), y), 
-               CV_RGB(255,0,0));
+               cvScalar(CV_RGB(255,0,0)));
     }
     for (int x=1; x<image->width; x++) {
         cvLine(image, 
                cvPoint(x-1, int(cvGet2D(img_hor, 0, x-1).val[0])), 
                cvPoint(x, int(cvGet2D(img_hor, 0, x).val[0])), 
-               CV_RGB(0,255,0));
+               cvScalar(CV_RGB(0,255,0)));
     }
 
     // Gradients
@@ -86,9 +86,9 @@ void videocallback(IplImage *image)
             if (img_canny->imageData[r.y*img_canny->widthStep+r.x]) {
                 double dirx, diry;
                 grad.GetAveGradient(r, &dirx, &diry);
-                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(dirx),r.y+2+int(diry)), CV_RGB(0,0,255));
-                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(-diry),r.y+2+int(+dirx)), CV_RGB(255,0,0));
-                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(+diry),r.y+2+int(-dirx)), CV_RGB(255,0,0));
+                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(dirx),r.y+2+int(diry)), cvScalar(CV_RGB(0,0,255)));
+                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(-diry),r.y+2+int(+dirx)), cvScalar(CV_RGB(255,0,0)));
+                cvLine(img_grad, cvPoint(r.x+2,r.y+2), cvPoint(r.x+2+int(+diry),r.y+2+int(-dirx)), cvScalar(CV_RGB(255,0,0)));
             }
         }
     }

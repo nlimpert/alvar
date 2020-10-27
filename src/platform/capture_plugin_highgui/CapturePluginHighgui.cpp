@@ -86,7 +86,7 @@ IplImage *CaptureHighgui::captureImage()
         return NULL;
     }
     mVideoCapture.retrieve(mMatrix);
-    mImage = mMatrix;
+    mImage = cvIplImage(mMatrix);
     return &mImage;
 }
 

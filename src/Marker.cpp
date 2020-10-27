@@ -46,9 +46,9 @@ void Marker::VisualizeMarkerPose(IplImage *image, Camera *cam, double visualize2
 		cvLine(image, cvPoint((int)visualize2d_points[4+i][0], (int)visualize2d_points[4+i][1]), cvPoint((int)visualize2d_points[4+((i+1)%4)][0], (int)visualize2d_points[4+((i+1)%4)][1]), color);
 	}
 	// Coordinates
-	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[9][0], (int)visualize2d_points[9][1]), CV_RGB(255,0,0));
-	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[10][0], (int)visualize2d_points[10][1]), CV_RGB(0,255,0));
-	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[11][0], (int)visualize2d_points[11][1]), CV_RGB(0,0,255));
+	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[9][0], (int)visualize2d_points[9][1]), cvScalar(CV_RGB(255,0,0)));
+	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[10][0], (int)visualize2d_points[10][1]), cvScalar(CV_RGB(0,255,0)));
+	cvLine(image, cvPoint((int)visualize2d_points[8][0], (int)visualize2d_points[8][1]), cvPoint((int)visualize2d_points[11][0], (int)visualize2d_points[11][1]), cvScalar(CV_RGB(0,0,255)));
 }
 
 void Marker::VisualizeMarkerContent(IplImage *image, Camera *cam, double datatext_point[2], double content_point[2]) const {
@@ -68,7 +68,7 @@ void Marker::VisualizeMarkerContent(IplImage *image, Camera *cam, double datatex
 	cvInitFont(&font, 0, 0.5, 0.5, 0);
 	std::stringstream val;
 	val<<int(GetId());
-	cvPutText(image, val.str().c_str(), cvPoint((int)datatext_point[0], (int)datatext_point[1]), &font, CV_RGB(255,255,0));
+	cvPutText(image, val.str().c_str(), cvPoint((int)datatext_point[0], (int)datatext_point[1]), &font, cvScalar(CV_RGB(255,255,0)));
 
 	// MarkerContent
 	int xc = int(content_point[0]);
@@ -81,9 +81,9 @@ void Marker::VisualizeMarkerContent(IplImage *image, Camera *cam, double datatex
 				(y >= 0) && (y < image->height))
 			{
 				if (cvGet2D(marker_content, j/3, i/3).val[0]) {
-					cvSet2D(image, y, x, CV_RGB(255,255,255));
+					cvSet2D(image, y, x, cvScalar(CV_RGB(255,255,255)));
 				} else {
-					cvSet2D(image, y, x, CV_RGB(0,0,0));
+					cvSet2D(image, y, x, cvScalar(CV_RGB(0,0,0)));
 				}
 			}
 		}
@@ -98,11 +98,11 @@ void Marker::VisualizeMarkerError(IplImage *image, Camera *cam, double errortext
 		val.str("");
 		val<<int(GetError(MARGIN_ERROR)*100)<<"% ";
 		val<<int(GetError(DECODE_ERROR)*100)<<"% ";
-		cvPutText(image, val.str().c_str(), cvPoint((int)errortext_point[0], (int)errortext_point[1]), &font, CV_RGB(255,0,0));
+		cvPutText(image, val.str().c_str(), cvPoint((int)errortext_point[0], (int)errortext_point[1]), &font, cvScalar(CV_RGB(255,0,0)));
 	} else if (GetError(TRACK_ERROR) > 0.01) {
 		val.str("");
 		val<<int(GetError(TRACK_ERROR)*100)<<"%";
-		cvPutText(image, val.str().c_str(), cvPoint((int)errortext_point[0], (int)errortext_point[1]), &font, CV_RGB(128,0,0));
+		cvPutText(image, val.str().c_str(), cvPoint((int)errortext_point[0], (int)errortext_point[1]), &font, cvScalar(CV_RGB(128,0,0)));
 	}
 }
 
@@ -122,12 +122,12 @@ void MarkerData::VisualizeMarkerContent(IplImage *image, Camera *cam, double dat
 	CvFont font;
 	cvInitFont(&font, 0, 0.5, 0.5, 0);
 	std::stringstream val;
-	CvScalar rgb=CV_RGB(255,255,0);
+	CvScalar rgb=cvScalar(CV_RGB(255,255,0));
 	if (content_type == MARKER_CONTENT_TYPE_NUMBER) {
 		val<<int(GetId());
 	} else {
-		if (content_type == MARKER_CONTENT_TYPE_FILE) rgb=CV_RGB(0,255,255);
-		if (content_type == MARKER_CONTENT_TYPE_HTTP) rgb=CV_RGB(255,0,255);
+		if (content_type == MARKER_CONTENT_TYPE_FILE) rgb=cvScalar(CV_RGB(0,255,255));
+		if (content_type == MARKER_CONTENT_TYPE_HTTP) rgb=cvScalar(CV_RGB(255,0,255));
 		val<<data.str;
 	}
 	cvPutText(image, val.str().c_str(), cvPoint((int)datatext_point[0], (int)datatext_point[1]), &font, rgb);

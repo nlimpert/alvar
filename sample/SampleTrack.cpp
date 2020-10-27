@@ -29,7 +29,7 @@ void track_psa(IplImage *image, IplImage *img_gray) {
     }
     tracker_psa.Track(img_gray);
     tracker_psa.Compensate(&x, &y);
-    cvCircle(image, cvPoint(int(x), int(y)), 10, CV_RGB(255,0,0));
+    cvCircle(image, cvPoint(int(x), int(y)), 10, cvScalar(CV_RGB(255,0,0)));
 }
 
 void track_psa_rot(IplImage *image, IplImage *img_gray) {
@@ -45,9 +45,9 @@ void track_psa_rot(IplImage *image, IplImage *img_gray) {
     tracker_psa_rot.Track(img_gray);
     tracker_psa_rot.Compensate(&x, &y);
     r += tracker_psa_rot.rotd;
-    cvCircle(image, cvPoint(int(x), int(y)), 15, CV_RGB(255,0,0));
+    cvCircle(image, cvPoint(int(x), int(y)), 15, cvScalar(CV_RGB(255,0,0)));
     double r_rad = r*3.1415926535/180;
-    cvLine(image, cvPoint(int(x), int(y)), cvPoint(int(x-sin(r_rad)*15), int(y+cos(r_rad)*15)), CV_RGB(255,0,0));
+    cvLine(image, cvPoint(int(x), int(y)), cvPoint(int(x-sin(r_rad)*15), int(y+cos(r_rad)*15)), cvScalar(CV_RGB(255,0,0)));
 }
 
 void track_stat(IplImage *image, IplImage *img_gray) {
@@ -61,7 +61,7 @@ void track_stat(IplImage *image, IplImage *img_gray) {
     }
     tracker_stat.Track(img_gray);
     tracker_stat.Compensate(&x, &y);
-    cvCircle(image, cvPoint(int(x), int(y)), 10, CV_RGB(0,255,0));
+    cvCircle(image, cvPoint(int(x), int(y)), 10, cvScalar(CV_RGB(0,255,0)));
 }
 
 void track_stat_rot(IplImage *image, IplImage *img_gray) {
@@ -77,9 +77,9 @@ void track_stat_rot(IplImage *image, IplImage *img_gray) {
     tracker_stat_rot.Track(img_gray);
     tracker_stat_rot.Compensate(&x, &y);
     r += tracker_stat_rot.rotd;
-    cvCircle(image, cvPoint(int(x), int(y)), 15, CV_RGB(0,255,0));
+    cvCircle(image, cvPoint(int(x), int(y)), 15, cvScalar(CV_RGB(0,255,0)));
     double r_rad = r*3.1415926535/180;
-    cvLine(image, cvPoint(int(x), int(y)), cvPoint(int(x-sin(r_rad)*15), int(y+cos(r_rad)*15)), CV_RGB(0,255,0));
+    cvLine(image, cvPoint(int(x), int(y)), cvPoint(int(x-sin(r_rad)*15), int(y+cos(r_rad)*15)), cvScalar(CV_RGB(0,255,0)));
 }
 
 void track_features(IplImage *image, IplImage *img_gray) {
@@ -93,7 +93,7 @@ void track_features(IplImage *image, IplImage *img_gray) {
     for (int i=0; i<tracker_features.feature_count; i++) {
         cvCircle(image, 
             cvPoint(int(tracker_features.features[i].x), int(tracker_features.features[i].y)), 2, 
-            CV_RGB(tracker_features.ids[i]%255,(tracker_features.ids[i]*7)%255,(tracker_features.ids[i]*11)%255));
+            cvScalar(CV_RGB(tracker_features.ids[i]%255,(tracker_features.ids[i]*7)%255,(tracker_features.ids[i]*11)%255)));
     }
 }
 
@@ -138,7 +138,7 @@ void videocallback(IplImage *image)
     else cvCvtColor(image, img_gray, CV_RGB2GRAY);
 
     trackers[tracker](image, img_gray);
-    cvPutText(image, tracker_names[tracker], cvPoint(3, image->height - 20), &font, CV_RGB(255, 255, 255));
+    cvPutText(image, tracker_names[tracker], cvPoint(3, image->height - 20), &font, cvScalar(CV_RGB(255, 255, 255)));
 }
 
 int keycallback(int key) {

@@ -35,7 +35,7 @@ void videocallback(IplImage *image)
         for(int j = 0; j < n_pixels; ++j)
         {
             CvPoint* pt = (CvPoint*)cvGetSeqElem(pixels, j);
-            cvLine(image, *pt, *pt, CV_RGB(255,0,0));
+            cvLine(image, *pt, *pt, cvScalar(CV_RGB(255,0,0)));
         }
     }
 

@@ -207,13 +207,13 @@ bool TrackerOrientation::UpdateRotationOnly(IplImage *gray, IplImage *image)
 		if(image)
 		{
 			if(f->status3D == Feature::NONE)
-				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, CV_RGB(255,0,0), 1);
+				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, cvScalar(CV_RGB(255,0,0)), 1);
 			else if(f->status3D == Feature::USE_FOR_POSE)
-				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, CV_RGB(0,255,0), 1);
+				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, cvScalar(CV_RGB(0,255,0)), 1);
 			else if(f->status3D == Feature::IS_INITIAL)
-				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, CV_RGB(0,0,255), 1);
+				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 3, cvScalar(CV_RGB(0,0,255)), 1);
 			else if(f->status3D == Feature::IS_OUTLIER)
-				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 2, CV_RGB(255,0,255), 1);
+				cvCircle(image, cvPoint(int(f->point.x), int(f->point.y)), 2, cvScalar(CV_RGB(255,0,255)), 1);
 		}
 
 		// Delete points that bk error is too big
@@ -233,7 +233,7 @@ bool TrackerOrientation::UpdateRotationOnly(IplImage *gray, IplImage *image)
 			_camera->ProjectPoints(&p3dm, gl_mat, &p2dm);
 
 			if(image)
-				cvLine(image, cvPoint(int(p2d[0]), int(p2d[1])), cvPoint(int(f->point.x),int(f->point.y)), CV_RGB(255,0,255));
+				cvLine(image, cvPoint(int(p2d[0]), int(p2d[1])), cvPoint(int(f->point.x),int(f->point.y)), cvScalar(CV_RGB(255,0,255)));
 
 			double dist = (p2d[0]-f->point.x)*(p2d[0]-f->point.x)+(p2d[1]-f->point.y)*(p2d[1]-f->point.y);
 			if(dist > _outlier_limit)

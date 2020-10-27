@@ -472,15 +472,15 @@ void SimpleSfM::Draw(IplImage *rgba) {
 			if (f.has_p3d) rad=5;
 			else rad = f.tri_cntr+1;
 
-			cvCircle(rgba, cvPointFrom32f(f.p2d), rad, CV_RGB(r,g,b));
+			cvCircle(rgba, cvPointFrom32f(f.p2d), rad, cvScalar(CV_RGB(r,g,b)));
 			if (pose_ok) {
 				// The shadow point line
 				if (f.type_id > 0 && f.estimation_type < 3 && f.p3d_sh.x != 0.f) {
-					cvLine(rgba, cvPointFrom32f(f.projected_p2d), cvPointFrom32f(f.projected_p2d_sh), CV_RGB(0,255,0));
+					cvLine(rgba, cvPointFrom32f(f.projected_p2d), cvPointFrom32f(f.projected_p2d_sh), cvScalar(CV_RGB(0,255,0)));
 				}
 				// Reprojection error
 				if (f.has_p3d) {
-					cvLine(rgba, cvPointFrom32f(f.p2d), cvPointFrom32f(f.projected_p2d), CV_RGB(255,0,255));
+					cvLine(rgba, cvPointFrom32f(f.p2d), cvPointFrom32f(f.projected_p2d), cvScalar(CV_RGB(255,0,255)));
 				}
 			}
 			//if (pose_ok && f.has_p3d) {

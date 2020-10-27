@@ -314,7 +314,7 @@ double MultiMarker::_GetPose(MarkerIterator &begin, MarkerIterator &end, Camera*
 				CvPoint3D64f Xnew = pointcloud[pointcloud_index(id, (int)j)];
 				world_points.push_back(Xnew);
 				image_points.push_back(marker->marker_corners_img.at(j));
-				if (image) cvCircle(image, cvPoint(int(marker->marker_corners_img[j].x), int(marker->marker_corners_img[j].y)), 3, CV_RGB(0,255,0));
+				if (image) cvCircle(image, cvPoint(int(marker->marker_corners_img[j].x), int(marker->marker_corners_img[j].y)), 3, cvScalar(CV_RGB(0,255,0)));
 			}
 			marker_status[index] = 2; // Used for tracking
 		}
@@ -356,10 +356,10 @@ int MultiMarker::_SetTrackMarkers(MarkerDetectorImpl &marker_detector, Camera* c
 			p[3].x = pi[3].x;
 			p[3].y = pi[3].y;
 			if (image) {
-				cvLine(image, cvPoint(int(p[0].x), int(p[0].y)), cvPoint(int(p[1].x), int(p[1].y)), CV_RGB(255,0,0));
-				cvLine(image, cvPoint(int(p[1].x), int(p[1].y)), cvPoint(int(p[2].x), int(p[2].y)), CV_RGB(255,0,0));
-				cvLine(image, cvPoint(int(p[2].x), int(p[2].y)), cvPoint(int(p[3].x), int(p[3].y)), CV_RGB(255,0,0));
-				cvLine(image, cvPoint(int(p[3].x), int(p[3].y)), cvPoint(int(p[0].x), int(p[0].y)), CV_RGB(255,0,0));
+				cvLine(image, cvPoint(int(p[0].x), int(p[0].y)), cvPoint(int(p[1].x), int(p[1].y)), cvScalar(CV_RGB(255,0,0)));
+				cvLine(image, cvPoint(int(p[1].x), int(p[1].y)), cvPoint(int(p[2].x), int(p[2].y)), cvScalar(CV_RGB(255,0,0)));
+				cvLine(image, cvPoint(int(p[2].x), int(p[2].y)), cvPoint(int(p[3].x), int(p[3].y)), cvScalar(CV_RGB(255,0,0)));
+				cvLine(image, cvPoint(int(p[3].x), int(p[3].y)), cvPoint(int(p[0].x), int(p[0].y)), cvScalar(CV_RGB(255,0,0)));
 			}
 			marker_detector.TrackMarkerAdd(id, p);
 			count++;
