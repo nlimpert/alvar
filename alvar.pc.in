@@ -1,0 +1,9 @@
+libdir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_LIBDIR@
+includedir=@CMAKE_INSTALL_PREFIX@/@CMAKE_INSTALL_INCLUDEDIR@
+
+Name: alvar
+Description: ALVAR AR-Tag detection library
+Version: @ALVAR_VERSION@
+Cflags: -I${includedir}/alvar
+Libs: -L${libdir} -lalvar
+
