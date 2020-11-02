@@ -68,7 +68,7 @@ void inline DrawBB(IplImage *image, const std::vector<PointType>& points, CvScal
     if (!label.empty()) {
         CvFont font;
 		cvInitFont(&font, 0, 0.5, 0.5, 0);
-		cvPutText(image, label.c_str(), cvPoint((int)minimum.x+1,(int)minimum.y+2), &font, CV_RGB(255,255,0));
+		cvPutText(image, label.c_str(), cvPoint((int)minimum.x+1,(int)minimum.y+2), &font, cvScalar(CV_RGB(255,255,0)));
     }
 }
 
@@ -100,14 +100,14 @@ void inline DrawLines(IplImage *image, const std::vector<PointType>& points, CvS
   * \param line		Line struct to be drawn.
   * \param color	Use CV_RGB(red,green,blue) to determine the color.
 */
-void ALVAR_EXPORT DrawLine(IplImage* image, const Line line, CvScalar color = CV_RGB(0,255,0));
+void ALVAR_EXPORT DrawLine(IplImage* image, const Line line, CvScalar color = cvScalar(CV_RGB(0,255,0)));
 
 /** \brief Draws points of the contour that is obtained by \e Labeling class.
   * \param image	Pointer to the destination image.
   * \param contour	Controur sequence.
   * \param color	Use CV_RGB(red,green,blue) to determine the color.
 */
-void ALVAR_EXPORT DrawPoints(IplImage* image, const CvSeq* contour, CvScalar color = CV_RGB(255,0,0));
+void ALVAR_EXPORT DrawPoints(IplImage* image, const CvSeq* contour, CvScalar color = cvScalar(CV_RGB(255,0,0)));
 
 
 /** \brief Draws circles to the contour points that are obtained by \e Labeling class.
@@ -116,14 +116,14 @@ void ALVAR_EXPORT DrawPoints(IplImage* image, const CvSeq* contour, CvScalar col
   * \param radius	Circle radius in pixels.
   * \param color	Use CV_RGB(red,green,blue) to determine the color.
 */
-void ALVAR_EXPORT DrawCircles(IplImage* image, const CvSeq* contour, int radius, CvScalar color = CV_RGB(255,0,0));
+void ALVAR_EXPORT DrawCircles(IplImage* image, const CvSeq* contour, int radius, CvScalar color = cvScalar(CV_RGB(255,0,0)));
 
 /** \brief Draws lines between consecutive contour points.
   * \param image	Pointer to the destination image.
   * \param contour	Controur sequence.
   * \param color	Use CV_RGB(red,green,blue) to determine the color.
 */
-void ALVAR_EXPORT DrawLines(IplImage* image, const CvSeq* contour, CvScalar color = CV_RGB(255,0,0));
+void ALVAR_EXPORT DrawLines(IplImage* image, const CvSeq* contour, CvScalar color = cvScalar(CV_RGB(255,0,0)));
 
 /** \brief Draws circles to the array of points.
   * \param image	Pointer to the destination image.

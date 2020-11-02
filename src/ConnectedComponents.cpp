@@ -225,10 +225,10 @@ void LabelingCvSeq::LabelSquares(IplImage* image, bool visualize)
         if (visualize) {
             for(size_t j = 0; j < 4; ++j) {
                 PointDouble &intc = blob_corners[i][j];
-                if (j == 0) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, CV_RGB(255, 255, 255));
-                if (j == 1) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, CV_RGB(255, 0, 0));
-                if (j == 2) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, CV_RGB(0, 255, 0));
-                if (j == 3) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, CV_RGB(0, 0, 255));
+                if (j == 0) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, cvScalar(CV_RGB(255, 255, 255)));
+                if (j == 1) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, cvScalar(CV_RGB(255, 0, 0)));
+                if (j == 2) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, cvScalar(CV_RGB(0, 255, 0)));
+                if (j == 3) cvCircle(image, cvPoint(int(intc.x), int(intc.y)), 5, cvScalar(CV_RGB(0, 0, 255)));
             }
         }
     }

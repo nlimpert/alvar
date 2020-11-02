@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
                     measvec.push_back(cvPoint2D32f(x, y));
                     x = (x*res/poly_res)+(res/2);
                     y = (y*res/poly_res)+(res/2);
-                    cvCircle(img, cvPoint(int(x), int(y)), 1, CV_RGB(0,255,0));
+                    cvCircle(img, cvPoint(int(x), int(y)), 1, cvScalar(CV_RGB(0,255,0)));
                 }
             }
             cvShowImage("SampleOptimization", img);
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
                     double yy2 = get_y(xx2, a, b, c, d, e);
                     int y1 = int((yy1*res/poly_res)+(res/2));
                     int y2 = int((yy2*res/poly_res)+(res/2));
-                    cvLine(img, cvPoint(x1,y1), cvPoint(x2,y2), CV_RGB(degree*50,255-(degree*50),255));
+                    cvLine(img, cvPoint(x1,y1), cvPoint(x2,y2), cvScalar(CV_RGB(degree*50,255-(degree*50),255)));
                 }
                 cvShowImage("SampleOptimization", img);
                 cvWaitKey(10);

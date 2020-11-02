@@ -142,7 +142,7 @@ void videocallback(IplImage *image)
     {
         foo.pose = pose;
     }
-    foo.Visualize(image, &cam, CV_RGB(0,0,255));
+    foo.Visualize(image, &cam, cvScalar(CV_RGB(0,0,255)));
 
     if (flip_image) {
         cvFlip(image);

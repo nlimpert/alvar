@@ -225,17 +225,17 @@ int main(int argc, char *argv[])
                 get_measurement(&x, &y);
                 filters[ii](x, y, &fx, &fy);
                 cvZero(img);
-                cvPutText(img, filter_names[ii], cvPoint(3, res - 10), &font, CV_RGB(255, 255, 255));
-                cvCircle(img, cvPoint(int(x), int(y)), 2, CV_RGB(0, 255, 255));
-                cvCircle(img, cvPoint(int(x), int(y)), 3, CV_RGB(255, 255, 255));
+                cvPutText(img, filter_names[ii], cvPoint(3, res - 10), &font, cvScalar(CV_RGB(255, 255, 255)));
+                cvCircle(img, cvPoint(int(x), int(y)), 2, cvScalar(CV_RGB(0, 255, 255)));
+                cvCircle(img, cvPoint(int(x), int(y)), 3, cvScalar(CV_RGB(255, 255, 255)));
                 CvPoint fp;
                 fp.x = int(fx);
                 fp.y = int(fy);
                 tail.push_back(fp);
                 for (size_t iii = 0; iii < tail.size(); iii++) {
-                    cvCircle(img, tail[iii], 0, CV_RGB(255, 255, 0));
+                    cvCircle(img, tail[iii], 0, cvScalar(CV_RGB(255, 255, 0)));
                 }
-                cvCircle(img, fp, 2, CV_RGB(255, 0, 255));
+                cvCircle(img, fp, 2, cvScalar(CV_RGB(255, 0, 255)));
                 cvShowImage("SampleFilter", img);
                 key = cvWaitKey(10);
                 if (key != -1) {
