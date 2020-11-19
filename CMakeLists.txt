@@ -36,7 +36,7 @@ set(ALVAR_COMPILER "gcc${_version}")
 if($ENV{OPENCV_ROOT})
     set(OpenCV_ROOT_DIR $ENV{OPENCV_ROOT} CACHE PATH "The OpenCV root directory")
 endif($ENV{OPENCV_ROOT})
-find_package(OpenCV 3 REQUIRED COMPONENTS opencv_calib3d opencv_core opencv_features2d opencv_flann opencv_highgui opencv_imgproc opencv_ml opencv_video)
+find_package(OpenCV 4 REQUIRED COMPONENTS opencv_calib3d opencv_core opencv_features2d opencv_flann opencv_highgui opencv_imgproc opencv_ml opencv_video)
 if(NOT OpenCV_FOUND)
     find_package(OpenCV COMPONENTS calib3d core features2d flann highgui imgproc legacy ml video
                  NO_MODULE NAMES OpenCV
