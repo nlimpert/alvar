@@ -34,11 +34,11 @@
 #include "Alvar.h"
 #include "AlvarException.h"
 #include <cmath> //for abs
-#include <cv.h>
-#include <cxcore.h>
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <opencv2/core.hpp>
+#include <opencv2/opencv.hpp>
 #include <sstream>
 #include <vector>
 
@@ -69,7 +69,7 @@ template <class C> inline double ALVAR_EXPORT Deg2Rad(const C &v) {
 
 /**
  * \brief Simple \e Point class meant to be inherited from OpenCV point-classes.
- * For example: Point<CvPoint2D64f> p
+ * For example: Point<cv::Point2d> p
  */
 template <class C, class D = int> struct ALVAR_EXPORT Point : public C {
   /**
@@ -90,12 +90,12 @@ template <class C, class D = int> struct ALVAR_EXPORT Point : public C {
 /**
  *  \brief The default integer point type.
  */
-typedef ALVAR_EXPORT Point<CvPoint> PointInt;
+typedef ALVAR_EXPORT Point<cv::Point> PointInt;
 
 /**
  *  \brief The default double point type.
  */
-typedef ALVAR_EXPORT Point<CvPoint2D64f> PointDouble;
+typedef ALVAR_EXPORT Point<cv::Point2d> PointDouble;
 
 /** \brief Returns the squared distance of two points.
  * \param p1	First point.
@@ -113,20 +113,20 @@ double PointSquaredDistance(PointType p1, PointType p2) {
  * \brief  Computes dot product AB.BC
  * \param  A,B and C	points defining lines (line segments) AB and BC
  */
-int ALVAR_EXPORT dot(CvPoint *A, CvPoint *B, CvPoint *C);
+int ALVAR_EXPORT dot(cv::Point &A, cv::Point &B, cv::Point &C);
 
 /**
  * \brief  Computes the cross product AB x AC
  * \param  A,B and C points defining lines (line segments) AB and AC
  * \param
  */
-int ALVAR_EXPORT cross(CvPoint *A, CvPoint *B, CvPoint *C);
+int ALVAR_EXPORT cross(cv::Point &A, cv::Point &B, cv::Point &C);
 
 /**
  * \brief  Compute the distance from A to B
  * \param  A and B		points
  */
-double ALVAR_EXPORT distance(CvPoint *A, CvPoint *B);
+double ALVAR_EXPORT distance(cv::Point &A, cv::Point &B);
 
 /**
  * \brief  Computes the distance from point C to line (segment) AB.
@@ -134,8 +134,8 @@ double ALVAR_EXPORT distance(CvPoint *A, CvPoint *B);
  * \param  C	point
  * \param  A abd B	 points defining line (segment) AB
  */
-double ALVAR_EXPORT linePointDist(CvPoint *A, CvPoint *B, CvPoint *C,
-                                  bool isSegment);
+double ALVAR_EXPORT linePointDist(const cv::Point &A, const cv::Point &B,
+                                  const cv::Point &C, bool isSegment);
 
 /**
  * \brief  Computes the angle between lines AB and CD
@@ -144,7 +144,8 @@ double ALVAR_EXPORT linePointDist(CvPoint *A, CvPoint *B, CvPoint *C,
  * point of first line \param  B end point of first line \param  C start point
  * of second line \param  D end point of second line
  */
-double ALVAR_EXPORT angle(CvPoint *A, CvPoint *B, CvPoint *C, CvPoint *D,
+double ALVAR_EXPORT angle(const cv::Point &A, const cv::Point &B,
+                          const cv::Point &C, const cv::Point &D,
                           int isDirectionDependent);
 
 /**
@@ -154,8 +155,9 @@ double ALVAR_EXPORT angle(CvPoint *A, CvPoint *B, CvPoint *C, CvPoint *D,
  * point of the closest polygon segment \param  isClosedPolygon is true if
  * polygon is closed (segment of the first and last point is also checked)
  */
-double ALVAR_EXPORT polyLinePointDist(CvPoint *PointList, int nPnts, CvPoint *C,
-                                      int *index, int isClosedPolygon);
+double ALVAR_EXPORT polyLinePointDist(const std::vector<cv::Point> &points,
+                                      cv::Point &C, int *index,
+                                      int isClosedPolygon);
 
 // ttesis end
 
@@ -165,7 +167,7 @@ double ALVAR_EXPORT polyLinePointDist(CvPoint *PointList, int nPnts, CvPoint *C,
  * \param ellipse_box	OpenCV struct for the fitted ellipse.
  */
 void ALVAR_EXPORT FitCVEllipse(const std::vector<PointDouble> &points,
-                               CvBox2D &ellipse_box);
+                               cv::RotatedRect &&ellipse_box);
 
 int ALVAR_EXPORT exp_filt2(std::vector<double> &v, std::vector<double> &ret,
                            bool clamp);
@@ -202,15 +204,15 @@ int ALVAR_EXPORT find_zero_crossings(const std::vector<double> &v,
 /**
  * \brief Output OpenCV matrix for debug purposes.
  */
-void ALVAR_EXPORT out_matrix(const CvMat *m, const char *name);
+void ALVAR_EXPORT out_matrix(const cv::Mat &m, const char *name);
 
 /**
  * \brief Limits a number to between two values.
  * \param val		Input value.
  * \param min_val	Minimum value for the result.
  * \param max_val	Maximum value for the result.
- * \return			Resulting value that is between \e min_val and \e
- * max_val.
+ * \return			Resulting value that is between \e min_val and
+ * \e max_val.
  */
 double ALVAR_EXPORT Limit(double val, double min_val, double max_val);
 
@@ -442,9 +444,9 @@ public:
   /** \brief Method for serializing 'std::string' data element. Used from your
    * serializable class. */
   bool Serialize(std::string &data, const std::string &name);
-  /** \brief Method for serializing 'CvMat' data element. Used from your
+  /** \brief Method for serializing 'cv::Mat' data element. Used from your
    * serializable class. */
-  bool Serialize(CvMat &data, const std::string &name);
+  bool Serialize(cv::Mat &data, const std::string &name);
   /** \brief Method for checking if we are inputting or outputting. Can be used
    * from your serializable class. */
   bool IsInput() { return input; }
